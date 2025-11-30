@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Lock } from 'lucide-react';
+import { Lock } from 'lucide-react';
 
 export const FheBadge: React.FC = () => {
   return (

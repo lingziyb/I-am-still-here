@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "hardhat run scripts/deploy.cjs --network sepolia"
@@ -27,8 +27,6 @@
     "globals": "^15.9.0",
     "typescript": "^5.5.3",
     "vite": "^5.4.1",
-    "hardhat": "^2.22.8",
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "dotenv": "^16.4.5",
     "fhevm": "^0.6.2"
   }

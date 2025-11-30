@@ -2,11 +2,7 @@ import { ethers, Contract } from "ethers";
 import { CONTRACT_CONFIG } from "../constants";
 
 // @ts-ignore
-import {
-  initSDK,
-  createInstance,
-  SepoliaConfig,
-} from "https://cdn.zama.org/relayer-sdk-js/0.3.0-5/relayer-sdk-js.js";
+import { initSDK, createInstance, SepoliaConfig } from "https://cdn.zama.org/relayer-sdk-js/0.3.0-5/relayer-sdk-js.js";
 
 const STORAGE_KEY = "still_here_last_signal";
 
@@ -29,7 +25,7 @@ export async function initFhevmNoSign() {
   return { relayer };
 }
 
-export async function getTotalLiveNoSign(relayer) {
+export async function getTotalLiveNoSign(relayer: any) {
   const provider = new ethers.JsonRpcProvider(
     "https://ethereum-sepolia.publicnode.com"
   );
