@@ -2,7 +2,11 @@ import { ethers, Contract } from "ethers";
 import { CONTRACT_CONFIG } from "../constants";
 
 // @ts-ignore
-import { initSDK, createInstance, SepoliaConfig } from "https://cdn.zama.org/relayer-sdk-js/0.3.0-5/relayer-sdk-js.js";
+import {
+  initSDK,
+  createInstance,
+  SepoliaConfig,
+} from "https://cdn.zama.org/relayer-sdk-js/0.3.0-5/relayer-sdk-js.js";
 
 const STORAGE_KEY = "still_here_last_signal";
 
@@ -35,16 +39,13 @@ export async function getTotalLiveNoSign(relayer: any) {
     ["function getTotalLive() external view returns (bytes32)"],
     provider
   );
-
   const encryptedHandle = await contract.getTotalLive();
-  console.log(444, relayer, contract, encryptedHandle)
 
   if (!encryptedHandle || encryptedHandle === "0x") {
     throw new Error("Invalid encrypted handle");
   }
 
   const value = await relayer.publicDecrypt([encryptedHandle], "uint32");
-  console.log(555, value)
 
   return Number(value);
 }
@@ -64,7 +65,6 @@ export const getLastSignalTime = async (
 
   // 1️⃣ get encrypt handle
   const encryptedHandle: string = await contract.getLastSignalTime();
-  console.log("Encrypted handle:", encryptedHandle);
 
   // 2️⃣ if handle 0，user not signal
   if (/^0x0+$/.test(encryptedHandle)) {
@@ -109,7 +109,6 @@ export const getLastSignalTime = async (
   );
 
   const decryptedValue = Object.values(result)[0];
-  console.log("Decrypted lastSignalTime =", decryptedValue);
 
   return Number(decryptedValue);
 };
@@ -131,19 +130,13 @@ export async function connectWallet() {
 
 export async function sendSignal(relayer, delta, signer, lastSignalPlain) {
   // sendSignal
-  console.log("signal: " + lastSignalPlain);
-  
-  const builder = relayer.createEncryptedInput(
-    CONTRACT_CONFIG.ADDRESS,
-    await signer.getAddress()
-  );
-
+  const addr = await signer.getAddress();
+  const builder = relayer.createEncryptedInput(CONTRACT_CONFIG.ADDRESS, addr);
   const contract = new Contract(
     CONTRACT_CONFIG.ADDRESS,
     CONTRACT_CONFIG.ABI,
     signer
   );
-
   const encrypted = await builder.add32(delta).encrypt();
   const tx = await contract.signal(
     encrypted.handles[0],

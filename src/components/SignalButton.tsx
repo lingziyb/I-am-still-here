@@ -24,7 +24,21 @@ export const SignalButton: React.FC<SignalButtonProps> = ({ appState, onSignal }
         return (
           <div className="flex flex-col items-center animate-pulse">
             <Radio className="w-6 h-6 mb-2" />
-            <span className="text-sm tracking-widest">CONNECTING...</span>
+            <span className="text-sm tracking-widest">SIGNING...</span>
+          </div>
+        );
+      case AppState.SIGNING_KEYS:
+        return (
+          <div className="flex flex-col items-center animate-pulse">
+            <Lock className="w-6 h-6 mb-2" />
+            <span className="text-sm tracking-widest">SIGNING...</span>
+          </div>
+        );
+      case AppState.ENCRYPTING:
+        return (
+          <div className="flex flex-col items-center">
+            <Loader2 className="w-6 h-6 mb-2 animate-spin" />
+            <span className="text-sm tracking-widest">ENCRYPTING...</span>
           </div>
         );
       case AppState.SUBMITTING:

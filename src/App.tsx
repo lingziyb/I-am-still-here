@@ -56,29 +56,30 @@ const App: React.FC = () => {
   const handleSignal = async () => {
     if (!relayer) return;
 
-    setAppState(AppState.CONNECTING);
-    const signer = await connectWallet(); // wallet sign   
-
-    setAppState(AppState.SUBMITTING);
     try {
+      setAppState(AppState.CONNECTING);
+      const signer = await connectWallet(); // wallet sign   
+
+      setAppState(AppState.SUBMITTING);
       const txHash = await sendSignal(relayer, 1, signer, lastSignalTime); // send signal
-      
+
       console.log("Signal successful:", txHash);
+      setAppState(AppState.CONFIRMED);
+      setCount((prev) => prev + 1);
+
+      try {
+        const last = await getLastSignalTime(relayer, signer); // get signalTime
+
+        setLastSignalTime(last);
+        setLocalSignalTime(last);
+      } catch (e: any) {
+        console.error("getSignalTime fail:  " + e.message);
+      }
     } catch (e: any) {
-      console.error("getSignalTime fail:  " + e.message);
+      console.error("sendSignal fail:  " + e.message);
       setAppState(AppState.ERROR);
     }
-    setAppState(AppState.CONFIRMED);
-    setCount((prev) => prev + 1);
 
-    try {
-      const last = await getLastSignalTime(relayer, signer); // get signalTime
-      console.log('getLastSignalTime', last, Date.now())
-      setLastSignalTime(last);
-      setLocalSignalTime(last);
-    } catch (e: any) {
-      console.error("getSignalTime fail:  " + e.message);
-    }
   };
 
   // ----------------------------------------
