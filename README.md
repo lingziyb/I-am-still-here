@@ -191,8 +191,6 @@ npm run deploy
 
 <img width="3584" height="1996" alt="image" src="https://github.com/user-attachments/assets/e7c58661-a85a-4171-984c-426a97c08180" />
 
-<img width="3584" height="1996" alt="image" src="https://github.com/user-attachments/assets/562d8374-3ed0-41c6-a88d-8d668f7e1b09" />
-
 <img width="3584" height="1996" alt="image" src="https://github.com/user-attachments/assets/eaef76ee-5218-416f-87f5-4a64e517aa8c" />
 
 > A minimal interface: a few lines of text + one button, capable of conveying strong social meaning.
