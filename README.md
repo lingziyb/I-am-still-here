@@ -3,7 +3,7 @@
 [Demo 链接](https://i-am-still-here.vercel.app) | [Zama 开发者计划](https://www.zama.org/programs/developer-program)
 
 > **一句话介绍：**
-> 一个专属于「墙内用户」的匿名打卡按钮——每天点一下，告诉世界「我还在这里」。你的身份永远加密，但所有人能看到今天还有多少人和你一样在坚持。
+> 一个专属于「墙内用户」的匿名打卡按钮——每天点一下，告诉世界「我还在这里」，你的身份永远加密，但所有人能看到今天还有多少人和你一样在坚持。
 
 ---
 
@@ -11,8 +11,8 @@
 
 在某些环境下，人们无法公开表达自己，但仍希望被看见。**I’m Still Here** 提供了极简而强大的方式：
 
-- 🔒 **强隐私需求**：身份完全加密，无法追踪  
-- ❤️ **真实社会意义**：类似「我是 8964 见证者」「我是新疆/香港关心者」——敢偷偷点，但不敢公开发声  
+- 🔒 **强隐私需求**：身份完全加密，无法追踪
+- ❤️ **真实社会意义**：类似「我是 8964 见证者」「我是新疆/香港关心者」——敢偷偷点，但不敢公开发声    
 - 🌐 **全球传播力**：墙外用户易于分享，墙内用户默默每天打卡  
 - 🔑 **完美贴合 Zama 理念**：FHE 不只是玩具，它是保护真实人类的工具
 
@@ -94,6 +94,7 @@ Coprocessors + KMS (off-chain FHE 执行 & key 管理)
   - `signal(externalEuint32 encryptedValue, bytes attestation, uint256 lastSignalPlain)`  
   - `getTotalLive()`  
   - `getLastSignalTime()`
+
 ```
 [
   {"inputs":[{"internalType":"externalEuint32","name":"encryptedValue","type":"bytes32"},{"internalType":"bytes","name":"attestation","type":"bytes"},{"internalType":"uint256","name":"lastSignalPlain","type":"uint256"}],"name":"signal","outputs":[],"stateMutability":"nonpayable","type":"function"},
@@ -101,6 +102,7 @@ Coprocessors + KMS (off-chain FHE 执行 & key 管理)
   {"inputs":[],"name":"getLastSignalTime","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"}
 ]
 ```
+
 ---
 
 ## 🌏 社会影响
@@ -134,6 +136,7 @@ Coprocessors + KMS (off-chain FHE 执行 & key 管理)
 <img width="3584" height="1996" alt="image" src="https://github.com/user-attachments/assets/38d74ce6-29d3-4156-bd84-abce27cd38e6" />
 
 <img width="3584" height="1996" alt="image" src="https://github.com/user-attachments/assets/b24ba5ff-da74-4bff-a701-cd77d280e462" />
+
 
 > 一个极简界面，几行文字 + 一个按钮，即可改变用户感受。
 
