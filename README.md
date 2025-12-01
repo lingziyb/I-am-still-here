@@ -1,142 +1,149 @@
-# I’m Still Here
+# I'm Still Here
 
-[Demo 链接](https://i-am-still-here.vercel.app) | [Zama 开发者计划](https://www.zama.org/programs/developer-program)
+[Demo Link](https://i-am-still-here.vercel.app) | [Zama Developer Program](https://www.zama.org/programs/developer-program)
 
-> **一句话介绍：**
-> 一个专属于「墙内用户」的匿名打卡按钮——每天点一下，告诉世界「我还在这里」，你的身份永远加密，但所有人能看到今天还有多少人和你一样在坚持。
-
----
-
-## 🌟 项目灵感
-
-在某些环境下，人们无法公开表达自己，但仍希望被看见。**I’m Still Here** 提供了极简而强大的方式：
-
-- 🔒 **强隐私需求**：身份完全加密，无法追踪
-- ❤️ **真实社会意义**：类似「我是 8964 见证者」「我是新疆/香港关心者」——敢偷偷点，但不敢公开发声    
-- 🌐 **全球传播力**：墙外用户易于分享，墙内用户默默每天打卡  
-- 🔑 **完美贴合 Zama 理念**：FHE 不只是玩具，它是保护真实人类的工具
+> **One-line Introduction:**
+> An anonymous check-in button for users inside restricted regions — click every day to tell the world “I’m still here.” Your identity is always encrypted, but everyone can see how many people are persisting like you today.
 
 ---
 
-## ⚡ 核心功能
+## 🌟 Project Inspiration
 
-1. **每日匿名打卡**  
-   - 用户点击按钮，即可为当天计数加一  
-   - 每日 UTC 0 点自动归零  
+In certain environments, people cannot speak freely but still want to be seen. **I'm Still Here** provides a minimal yet powerful way:
 
-2. **实时总数显示**  
-   - 所有用户的累计「还在这里」人数加密存储  
-   - 总数对所有人公开，但个人身份永远保密  
-
-3. **加密时间戳记录**  
-   - 每个用户的最后一次打卡时间加密存储  
-   - 用户可自行解密自己的记录，保证私密性
+* 🔒 **Strong Privacy**: Identity is fully encrypted and untraceable
+* ❤️ **Real Social Significance**: Similar to “I am a 1989 Tiananmen witness,” “I care about Xinjiang/Hong Kong” — users can click secretly without speaking publicly
+* 🌐 **Global Reach**: Users outside can share, and users inside silently check in daily
+* 🔑 **Aligned with Zama Philosophy**: FHE is not just a toy — it is a tool to protect real humans
 
 ---
 
-## 🛠 技术亮点
+## ⚡ Core Features
 
-**基于 Zama FHEVM 的全同态加密（FHE）智能合约：**
+1. **Daily Anonymous Check-in**
 
-- **智能合约**  
-  - 使用 `@fhevm/solidity/lib/FHE.sol` 加密用户打卡数据  
-  - `totalLive` 对所有人可公开解密，个人信息永远加密  
-  - 每日冷却逻辑保证用户每天只能打一次卡  
+   * Users click the button to increment the daily count
+   * Automatically resets at 00:00 UTC every day
 
-- **前端集成**  
-  - `Relayer SDK` 处理加密输入与用户私钥解密  
-  - 用户无需额外密钥管理或复杂操作，即可安全打卡  
+2. **Real-time Total Display**
 
-- **隐私设计**  
-  - 完全匿名打卡，FHE 确保身份和行为数据在链上永不泄露  
-  - 公共计数对所有人可见，实现社群共鸣
+   * All user check-ins are stored encrypted
+   * Total count is publicly visible while individual identities remain private
+
+3. **Encrypted Timestamp Recording**
+
+   * Each user’s last check-in timestamp is encrypted
+   * Users can decrypt their own record to keep it private
 
 ---
 
-## 🏗 技术架构
+## 🛠 Technical Highlights
+
+**Built on Zama FHEVM with Fully Homomorphic Encryption (FHE):**
+
+* **Smart Contract**
+
+  * Uses `@fhevm/solidity/lib/FHE.sol` to encrypt user check-in data
+  * `totalLive` is publicly decryptable while personal data remains encrypted
+  * Daily cooldown logic ensures users can only check in once per UTC day
+
+* **Frontend Integration**
+
+  * `Relayer SDK` handles encrypted input and user key decryption
+  * Users require no additional key management for secure check-ins
+
+* **Privacy Design**
+
+  * Fully anonymous check-ins; FHE ensures identity and activity data is never exposed on-chain
+  * Public count creates community resonance
+
+---
+
+## 🏗 Technical Architecture
 
 ```
 Browser UI
    │
    ▼
-Relayer SDK (加密 / 解密)
+Relayer SDK (Encrypt / Decrypt)
    │
    ▼
 Smart Contract (FHEVM)
    │
-   ├─ totalLive (公开解密)
-   └─ lastSignalTime (用户私密)
+   ├─ totalLive (Publicly Decryptable)
+   └─ lastSignalTime (User Private)
    │
-Coprocessors + KMS (off-chain FHE 执行 & key 管理)
+Coprocessors + KMS (Off-chain FHE Execution & Key Management)
 ```
 
-- **前端**：React + Vite + Lucide UI  
-- **后端 / 区块链**：Solidity (FHEVM on Sepolia)  
-- **加密技术**：Zama TFHE + MPC + Threshold KMS
+* **Frontend**: React + Vite + Lucide UI
+* **Backend / Blockchain**: Solidity (FHEVM on Sepolia)
+* **Encryption Tech**: Zama TFHE + MPC + Threshold KMS
 
 ---
 
-## 🛠 开发与部署
+## 🛠 Development & Deployment
 
-### 安装依赖
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 启动本地开发环境
+### Start Local Development
 
 ```bash
 npm run dev
 ```
 
-* 启动 Vite 本地服务，浏览器访问 `http://localhost:5173`
+* Starts Vite dev server at `http://localhost:5173`
 
-### 构建生产版本
+### Build Production Version
 
 ```bash
 npm run build
 ```
 
-* 编译 TypeScript + 打包前端资源，输出到 `dist/` 目录
+* Compiles TypeScript and bundles frontend assets into `dist/`
 
-### 预览生产构建
+### Preview Production Build
 
 ```bash
 npm run preview
 ```
 
-* 启动本地服务器预览生产效果
+* Start local server to preview production build
 
-### 部署到 Sepolia 测试网
+### Deploy to Sepolia Testnet
 
 ```bash
 npm run deploy
 ```
 
-* 使用 Hardhat 脚本部署 `StillHere.sol` 合约
-* 确保 `.env` 中配置了钱包私钥和网络 RPC
+* Deploys `StillHere.sol` using Hardhat script
+* Ensure `.env` contains wallet private key and network RPC
 
 ---
 
-## 🚀 如何使用
+## 🚀 How to Use
 
-1. 打开 [I’m Still Here](https://i-am-still-here.vercel.app)  
-2. 连接钱包（MetaMask / 支持 EIP-712 签名的钱包）  
-3. 点击「我还在这里」按钮  
-4. 看到今日打卡总人数增加，并记录你的加密时间戳  
+1. Open [I'm Still Here](https://i-am-still-here.vercel.app)
+2. Connect your wallet (MetaMask / EIP-712 compatible)
+3. Click the “I’m Still Here” button
+4. See today’s total increment and your encrypted timestamp recorded
 
-> 每天 UTC 0 点自动归零，明天继续坚持。
+> Resets daily at 00:00 UTC. Come back tomorrow to check in again.
 
 ---
 
-## 📜 合约信息
+## 📜 Contract Information
 
-- **Sepolia 测试网地址**：`0x180d054D7D44FA58e421dA538556E006B7dFb793`  
-- **主要方法**：
-  - `signal(externalEuint32 encryptedValue, bytes attestation, uint256 lastSignalPlain)`  
-  - `getTotalLive()`  
-  - `getLastSignalTime()`
+* **Sepolia Testnet Address**: `0x180d054D7D44FA58e421dA538556E006B7dFb793`
+* **Main Methods**:
+
+  * `signal(externalEuint32 encryptedValue, bytes attestation, uint256 lastSignalPlain)`
+  * `getTotalLive()`
+  * `getLastSignalTime()`
 
 ```
 [
@@ -148,38 +155,38 @@ npm run deploy
 
 ---
 
-## 🌏 社会影响
+## 🌏 Social Impact
 
-- 提供安全匿名渠道，让用户每天向世界证明存在感  
-- 加密计数让社群感受到沉默中的坚持  
-- 展示 FHE 技术的真实社会价值——隐私保护不仅是概念，而是救命工具
-
----
-
-## 🔗 技术参考
-
-- [Zama FHEVM 白皮书](./fhevm_whitepaper_new.pdf)  
-- [Relayer SDK 指南](https://docs.zama.ai/protocol/relayer-sdk-guides/)  
-- [Solidity FHE Library](https://github.com/zama-ai/fhevm-solidity)
+* Provides a secure anonymous channel for users to show they are still present
+* Encrypted counts let the community feel persistence in silence
+* Demonstrates real-world value of FHE — privacy protection is not just a concept, it can save lives
 
 ---
 
-## ✨ 未来计划
+## 🔗 Technical References
 
-- 多语言支持，面向全球用户  
-- 优化 FHE 性能，实现更多实时加密应用  
-- 推广到其他链，实现跨链匿名打卡
+* [Zama FHEVM Whitepaper](./fhevm_whitepaper_new.pdf)
+* [Relayer SDK Guide](https://docs.zama.ai/protocol/relayer-sdk-guides/)
+* [Solidity FHE Library](https://github.com/zama-ai/fhevm-solidity)
+
+> Special thanks to [Zama](https://www.zama.org) for providing FHEVM and the Relayer SDK, enabling a truly anonymous social check-in app without exposing user privacy.
 
 ---
 
-## 🎬 项目演示
+## ✨ Future Plans
 
-<img width="3584" height="1996" alt="image" src="https://github.com/user-attachments/assets/8a6ce2f8-9d3c-47d3-8c8b-7ba8e7631982" />
+* Multi-language support for global users
+* Optimize FHE performance for more real-time encrypted applications
+* Expand to other chains to enable cross-chain anonymous check-ins
 
-<img width="3584" height="1996" alt="image" src="https://github.com/user-attachments/assets/38d74ce6-29d3-4156-bd84-abce27cd38e6" />
+---
 
-<img width="3584" height="1996" alt="image" src="https://github.com/user-attachments/assets/b24ba5ff-da74-4bff-a701-cd77d280e462" />
+## 🎬 Project Demo
 
+<img width="3584" height="1996" alt="Screenshot 1" src="https://github.com/user-attachments/assets/8a6ce2f8-9d3c-47d3-8c8b-7ba8e7631982" />
 
-> 一个极简界面，几行文字 + 一个按钮，即可改变用户感受。
+<img width="3584" height="1996" alt="Screenshot 2" src="https://github.com/user-attachments/assets/38d74ce6-29d3-4156-bd84-abce27cd38e6" />
 
+<img width="3584" height="1996" alt="Screenshot 3" src="https://github.com/user-attachments/assets/b24ba5ff-da74-4bff-a701-cd77d280e462" />
+
+> A minimal interface: a few lines of text + one button, capable of conveying strong social meaning.
