@@ -37,8 +37,8 @@ export const SignalButton: React.FC<SignalButtonProps> = ({ appState, onSignal }
       case AppState.CONFIRMED:
         return (
           <div className="flex flex-col items-center">
-            <span className="text-base tracking-widest text-gray-500 uppercase">Still here today</span>
-            <span className="text-xs text-gray-600 mt-1">resets tomorrow</span>
+            <span className="text-base tracking-widest text-gray-500 uppercase">Still alive</span>
+            <span className="text-xs text-gray-600 mt-1">Next check-in at UTC</span>
           </div>
         );
       case AppState.ERROR:
