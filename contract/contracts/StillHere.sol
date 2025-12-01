@@ -13,8 +13,6 @@ contract StillHere is ZamaEthereumConfig {
     euint32 private totalLive;
     mapping(address => euint256) private lastSignalTime;
 
-    // uint256 private constant COOLDOWN = 86400;
-
     constructor() {
         totalLive = FHE.asEuint32(0);
         FHE.allowThis(totalLive);
