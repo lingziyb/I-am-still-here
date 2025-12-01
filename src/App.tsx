@@ -96,7 +96,7 @@ const App: React.FC = () => {
       <div className="absolute top-6 right-6 z-50">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="text-gray-500 hover:text-gray-200 transition-colors"
+          className="text-gray-700 hover:text-gray-400 transition-colors"
         >
           <HelpCircle className="w-6 h-6" />
         </button>
@@ -124,7 +124,7 @@ const App: React.FC = () => {
 
       {/* Footer */}
       <footer className="w-full py-8 text-center">
-        <p className="text-[10px] text-gray-600 tracking-[0.3em] font-mono uppercase">
+        <p className="text-[10px] text-gray-700 tracking-[0.3em] font-mono uppercase">
           Encrypted on Zama Network
         </p>
       </footer>
